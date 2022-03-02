@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>demo</title>
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="applicable-device" content="pc">
+<meta name="mobile-agent" content="format=html5;url=http://m.yy4480.io/api.php/timming/make"/>
+<meta http-equiv="Cache-Control" content="no-transform" /> 
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link href="/favicon.ico" type="image/x-icon" rel="icon">
+<link href="/favicon.ico" type="image/x-icon" rel="shortcut icon">
+
+</head>
+<body>
+<script src="//libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+<script src="/js/evlonimageloader.js?20190225"></script>
+<script>
+function norefreload(img){
+    EvlonImageLoader.reloadImage(img);
+}
+
+</script>
+  
+    <img  class="norelreload" data-src="http://ww1.sinaimg.cn/large/006yeRCugy1g3vsks4061j31b80eg10a.jpg" alt="x战警：黑凤凰 蓝光" style="background-color: #EEEEEE;"/>
+    <img  class="norelreload" data-src="http://ww1.sinaimg.cn/large/006yeRCugy1g0tzakoqf0j31b80eg78f.jpg" alt="北漂爱情故事 更新至12集/共12集" style="background-color: #EEEEEE;"/>
+    <img  class="norelreload" data-src="http://ww1.sinaimg.cn/large/006yeRCugy1g0pz3t9dh6j31b80egwm3.jpg" alt="正义联盟 蓝光" style="background-color: #EEEEEE;"/>
+
+<script>
+	$('img.norelreload').each(function(idx,img){
+		img.onerror = function(){norefreload(img)};
+		$(img).attr('src',preGetImage($(img).attr('data-src')));
+	});
+</script>

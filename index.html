@@ -19,7 +19,11 @@
 <script src="/js/evlonimageloader.js?20190225"></script>
 <script>
 function norefreload(img){
-    EvlonImageLoader.reloadImage(img);
+    EvlonImageLoader.reloadImage(img, '/images/empty.gif');
+}
+
+function preGetImage(imgsrc){
+    return imgsrc;
 }
 
 </script>
@@ -30,7 +34,8 @@ function norefreload(img){
 
 <script>
 	$('img.norelreload').each(function(idx,img){
-		img.onerror = function(){norefreload(img)};
-		$(img).attr('src',preGetImage($(img).attr('data-src')));
+		img.onerror = function(){
+            norefreload(img)};
+		    $(img).attr('src',preGetImage($(img).attr('data-src')));
 	});
 </script>

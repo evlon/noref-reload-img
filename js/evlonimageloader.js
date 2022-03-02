@@ -3,27 +3,6 @@
  * @Licence: The MIT License.
  * @Author: Evlon evlion@qq.com.
  * @Description: Crossbrowser kill Ref load Image.
- * 		It's a hack that prevents the browser of sending the http referrer in the following cases:
- * 			- Image: You can display an image from another site being sure the other site won't know your website is displaying it.
- * 	Other interesting use is displaying an image without blocking the rest of the content, this way in case the image fails
- * it allows the rest of the page to load normally.
- * 		Uses:
- * 			- Load static Image  
- * @Compatibility:
- * 		It's been tested successfully on:
- * 			- Chrome 24.
- * 			- Firefox 15.
- * 			- Safari 6.
- * 			- Opera 12: it sends the referrer in the case of anchors if the target is an iframe, not if it opens in other window
- * 				or the same one, for images it never sends the referrer even without using the hack.
- * 			- IE 6, 7, 8.
- * 			- IE 9: it works for images but not links, that's why in that oogle's url redirection is used for this browser, in this case
- * 					there is an intermediate page.
- * @Interface:
- * 		- ReferrerKiller.linkHtml(url, [innerHtml], [anchorParams], [iframeAttributes]). Returns a string.
- * 		- ReferrerKiller.linkNode(url, [innerHtml], [anchorParams], [iframeAttributes]). Returns an Html Node.
- * 		- ReferrerKiller.imageHtml(url, [imgParams], [iframeAttributes]). Returns a string.
- * 		- ReferrerKiller.imageNode(url, [imgParams], [iframeAttributes]). Returns an Html Node.
  */
 
 /**
@@ -36,7 +15,7 @@ var EvlonImageLoader = (function () {
 	var PUB = {};
 	PUB.iframeLoaderId = 'evlonimageloader';
 
-	var  reloadImage = PUB.reloadImage = function(img){
+	var  reloadImage = PUB.reloadImage = function(img, emptyPic){
 		if(img.src == '')
 			return;
 		var imgsrc = img.src;	
@@ -59,7 +38,7 @@ var EvlonImageLoader = (function () {
 					if(showInfo) console.info('load image:' + imgsrc);
 					iframe.contentWindow.getImage(imgsrc,function(success, imgLoaded){
 						if(success){
-							img.src = '/static/images/empty.gif';
+							img.src = emptyPic;
 							img.src = imgsrc;
 							img.onerror = null;
 							if(showInfo) console.info('OK load image :' + imgsrc)
